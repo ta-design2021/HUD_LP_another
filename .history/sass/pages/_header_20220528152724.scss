@@ -1,0 +1,325 @@
+@use '../base/variables' as var;
+@use '../base/mixin' as mix;
+
+/* _header.scss */
+/*
+header
+--------------------------------- */
+#header {
+  width: 100%;
+  height: 100px;
+  background-color: var.$color-navy;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 35;
+
+  .header-inner {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .header-site-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: var.$color-navy;
+
+      .site-menu {
+
+        ul {
+          display: flex;
+
+          li {
+            margin-left: 20px;
+            margin-right: 20px;
+
+            &:last-child {
+              margin-right: 0;
+
+              // 800px以下の時のm-r指定
+              // @include mix.mq(sp) {
+              //   margin-right: 20px;
+              // }
+
+            } // li:last-child
+
+          } //li
+
+        } //ul
+
+      } // .site-menu
+
+    } //.header-site-menu
+
+  } //.header-innner
+
+  // .toggle-menu-btn {
+  //   display: none;
+  // }
+
+
+} //#header
+
+
+
+/*
+nav menu
+--------------------------------- */
+// #nav {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   text-align: center;
+//   width: 100%;
+//   height: 85vh;
+//   color: var.$color-navy;
+//   transition: opacity 0.6s ease, visibility 0.6s ease;
+//   opacity: 0;
+//   visibility: hidden;
+//   background-color: var.$color-navy;
+//   font-size: 0.85rem;
+//   z-index: 20;
+
+//   .nav-logo {
+//     width: 240px;
+//     position: absolute;
+//     top: 24px;
+//     left: 24px;
+
+//     // 520px以下の時logoサイズを変更
+//     @include mix.mq(sp) {
+//       width: 150px;
+//       line-height: .9;
+//       position: absolute;
+//       top: 32px;
+//     }
+
+//   }
+
+//   .nav-menu {
+//     margin: 100px 0 60px 0;
+//   }
+
+//   .nav-item {
+//     font-size: 1rem;
+//     font-weight: bold;
+//     letter-spacing: 0.2rem;
+//     border-bottom: 1px solid var.$color-white;
+//     position: relative;
+
+//     a {
+//       display: block;
+//       height: 80px;
+//       line-height: 80px;
+//     }
+
+//     &::after {
+//       content: "";
+//       width: 12px;
+//       height: 12px;
+//       border: 0;
+//       border-top: solid 2px var.$color-white;
+//       border-right: solid 2px var.$color-white;
+//       transform: rotate(45deg);
+//       position: absolute;
+//       top: 50%;
+//       right: 24px;
+//       margin-top: -6px;
+//       transition: right 0.5s;
+//     }
+
+//     &:hover::after {
+//       right: 1em;
+//     }
+
+//   } // .nav-item
+
+//   //520px以下の時メニューを開いた時の高さ
+//   @include mix.mq(sp) {
+//     height: 70vh;
+//   }
+
+// } // #nav
+
+/*
+header-contact-btn ヘッダーのコンタクトボタン--------------------------------- */
+// .header-contact-btn {
+//   font-weight: bold;
+//   width: 240px;
+//   height: 100px;
+//   line-height: 100px;
+//   background-color: var.$color-skyblue;
+//   position: absolute;
+//   top: 0;
+//   right: 100px;
+
+//   .contact-btn {
+//     width: 240px;
+//     height: 100px;
+//     display: flex;
+//     padding-left: 24px;
+//     align-items: center;
+//     font-size: 1.275rem;
+//     letter-spacing: 0.25rem;
+//     color: var.$color-white;
+
+//     // 矢印
+//     .arrow {
+//       display: inline-block;
+//       margin-left: 10px;
+//       width: 28px;
+//       height: 8px;
+//       border-bottom: 2px solid var.$color-blue;
+//       border-right: 2px solid var.$color-blue;
+//       transform: skew(45deg);
+//       position: absolute;
+//       top: 45%;
+//       right: 40px;
+//     }
+
+//     // 白丸
+//     .circle {
+//       display: inline-block;
+//       width: 30px;
+//       height: 30px;
+//       border-radius: 50%;
+//       background: var.$color-white;
+//       position: absolute;
+//       top: 35%;
+//       right: 20px;
+//     }
+
+//   } //.contact-btn
+
+//   // 520px以下の時headerのお問い合わせボタンを非表示
+//   @include mix.mq(sp) {
+//     display: none;
+//   }
+
+// } //.header-contact-btn
+
+/*
+toggle-btn ハンバーガーメニューの枠--------------------------------- */
+// .toggle-btn {
+//   display: block;
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   width: 100px;
+//   height: 100px;
+//   background-color: var.$color-navy;
+//   transition: 0.5s;
+//   cursor: pointer;
+//   z-index: 30;
+
+//   // 520px以下の時navメニューボタンの大きさ
+//   @include mix.mq(sp) {
+//     width: 80px;
+//     height: 80px;
+//   }
+
+//   // ハンバーガーメニューの線の設定（メニューが閉じている時）
+//   > span {
+//     display: block;
+//     position: absolute;
+//     height: 2px;
+//     background-color: var.$color-white;
+//     border-radius: 4px;
+//     transition: all .5s;
+
+//     // 1本目の線の長さと位置を設定
+//     &:nth-child(1) {
+//       width: 50px;
+//       top: 35px;
+//       left: 25px;
+
+//       // 520px以下の時のtoggleの位置と長さ指定
+//       @include mix.mq(sp) {
+//         width: 40px;
+//         top: 25px;
+//         left: 20px;
+//       }
+
+//     }
+
+//     // 2本目の線の位置を設定
+//     &:nth-child(2) {
+//       width: 40px;
+//       top: 50px;
+//       left: 25px;
+
+//       // 520px以下の時toggleの位置と長さ指定
+//       @include mix.mq(sp) {
+//         width: 30px;
+//         top: 40px;
+//         left: 20px;
+//       }
+
+//     }
+
+//     // 3本目の線の位置を設定
+//     &:nth-child(3) {
+//       width: 25px;
+//       left: 25px;
+//       bottom: 35px;
+
+//       // 520px以下の時toggleの位置と長さ指定
+//       @include mix.mq(sp) {
+//         width: 20px;
+//         left: 20px;
+//         bottom: 25px;
+//       }
+
+//     }
+
+//   }
+// } // .toggle-btn
+
+// /*
+// open --------------------------------- */
+// // ハンバーガーメニューメニューが開いている時は、「opacity: 1;」で画面表示する
+// .open {
+
+//   #nav {
+//     opacity: 1;
+//     visibility: visible;
+//   }
+
+//   .toggle-btn {
+//     span {
+
+//       background-color: var.$color-white;
+
+//       //1本目の線を-45度回転
+//       &:nth-child(1) {
+//         -webkit-transform: translateY(18px) rotate(-45deg);
+//         transform: translateY(18px) rotate(-45deg);
+//       }
+
+//       //2本目の線を非表示
+//       &:nth-child(2) {
+//         opacity: 0;
+//       }
+
+//       //3本目の線を315度回転
+//       &:nth-child(3) {
+//         width: 50px;
+//         -webkit-transform: translateY(-10px) rotate(45deg);
+//         transform: translateY(-10px) rotate(45deg);
+
+//         // 520px以下の時のtoggleの×の長さ指定
+//         @include mix.mq(sp) {
+//           width: 40px;
+//         }
+//       }
+
+//     }
+
+//   }
+
+// } //.open

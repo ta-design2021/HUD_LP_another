@@ -1,0 +1,75 @@
+@use '../base/variables' as var;
+@use '../base/mixin' as mix;
+
+/* _footer.scss */
+/*
+footer --------------------------------- */
+#footer {
+  width: 100%;
+  max-width: 100vw;
+  height: auto;
+  padding: 24px 24px 0 24px;
+  background-color: var.$color-blue;
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    // 520px以下の時の指定
+    @include mix.mq(sp) {
+      flex-wrap: wrap;
+    }
+
+    // 会社概要・Privacy Policy・Term of use
+    .footer-item {
+      width: 35%;
+      line-height: normal;
+
+      ul {
+        display: flex;
+        justify-content: space-evenly;
+
+        // 問合せフォームでcolor:navyにしてるのでここで白に戻す指定
+        a {
+          color: var.$color-white;
+        }
+
+      }
+
+      li {
+        padding-bottom: 5px;
+        font-size: 0.75rem;
+        letter-spacing: normal;
+
+        .ly_inner {
+          width: 100%;
+          max-width: 1080px;
+          padding: 20px 0;
+
+          // モーダルの中身のタイトル
+          h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+          }
+
+        }
+
+      } // li
+
+    } // .footer-item
+
+  } // .footer-container
+
+  // copyright
+  .copy {
+    text-align: center;
+    font-size: 0.7rem;
+    padding-bottom: 10px;
+    color: var.$color-white;
+    letter-spacing: normal;
+  }
+
+} // #footer

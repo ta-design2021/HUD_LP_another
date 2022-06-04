@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+/* style.scss */
+@use 'reset';
+@use 'base/common';
+@use 'base/animation';
+@use 'pages/header';
+@use 'pages/top';
+@use 'pages/service';
+@use 'pages/contact';
+@use 'pages/footer';

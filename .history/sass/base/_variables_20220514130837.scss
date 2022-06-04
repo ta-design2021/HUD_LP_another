@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+/* _variables.scss */
+/*
+color --------------------------------- */
+$color-blue: #0428a1;
+$color-skyblue: #5578b4;
+$color-skyblue2: #4e7bcc; // PLANのタブ枠線
+$color-green-blue: #46aab5;
+$color-navy: #160c54;
+$color-white: #fff;
+$color-white2: #f2f2f2; // SERVICE左側のメニュー欄,PLAN右側の金額box
+$color-gray: #c0c0c0; // ページタイトルのシャドウ
+$color-red: #b70000; // 問合せフォームの個人情報保護方針
+$color-black: #222; // モーダル
+$color-green: #37952F; // form内で使用
+
+
+/*
+size --------------------------------- */
+$size-base: 1240; //service.htmlのserviceセクションに使用
+
+/*
+transition --------------------------------- */
+$easing-ease-out: cubic-bezier( .215, .61, .355, 1); //service.htmlのserviceセクションに使用

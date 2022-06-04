@@ -1,0 +1,107 @@
+@use '../base/variables' as var;
+@use '../base/mixin' as mix;
+
+/* _footer.scss */
+/*
+footer --------------------------------- */
+#footer {
+  width: 100%;
+  height: auto;
+  background-color: var.$color-navy;
+
+  // 下記２つで中央揃え
+  display: flex;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .1);
+
+  // 520px以下の時のfooter高さ指定
+  @include mix.mq(sp) {
+    height: 320px;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+
+
+
+    // 520px以下の時の指定
+    @include mix.mq(sp) {
+      flex-wrap: wrap;
+      margin-bottom: 0;
+    }
+
+    // 会社概要・Privacy Policy・Term of use
+    .footer-item {
+      width: 35%;
+      line-height: normal;
+
+      // 520px以下の時の指定
+      @include mix.mq(sp) {
+        width: 100%;
+        margin: 24px 0 20px;
+      }
+
+      ul {
+        display: flex;
+        justify-content: space-evenly;
+
+        // 520px以下の時の指定
+        @include mix.mq(sp) {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        // 問合せフォームでcolor:navyにしてるのでここで白に戻す指定
+        a {
+          color: var.$color-white;
+        }
+
+        li {
+          padding-bottom: 5px;
+          font-size: 0.75rem;
+          letter-spacing: normal;
+
+          .ly_inner {
+            width: 100%;
+            max-width: 1080px;
+            padding: 20px 0;
+
+            // モーダルの中身のタイトル
+            h3 {
+              font-size: 1.5rem;
+              font-weight: bold;
+              margin-bottom: 30px;
+            }
+
+          }
+
+        } // li
+
+      }
+
+    } // .footer-item
+
+  } // .footer-container
+
+  // copyright
+  .copy {
+    text-align: center;
+    font-size: 0.7rem;
+    padding-bottom: 10px;
+    color: var.$color-white;
+    letter-spacing: normal;
+
+    // 520px以下の時のpb指定
+    @include mix.mq(sp) {
+      padding-bottom: 5px;
+    }
+
+  }
+
+} // #footer

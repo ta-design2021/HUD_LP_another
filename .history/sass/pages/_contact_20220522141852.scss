@@ -1,0 +1,368 @@
+@use '../base/variables' as var;
+@use '../base/mixin' as mix;
+
+/* _contact.scss */
+
+/*-------------------------------------------
+index.php
+-------------------------------------------*/
+.page-lead {
+  width: 100%;
+  max-width: 100vw;
+
+  // 520px以下の時の横幅指定
+  @include mix.mq(sp) {
+    width: 80%;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .sec-title-ja {
+    // 520px以下の時のfs指定
+    @include mix.mq(sp) {
+      font-size: 1rem;
+    }
+
+  }
+
+  .contact-page-txt {
+    display: block;
+    margin-top: 40px;
+    font-size: 0.95rem;
+
+    // 520px以下の時のfs指定
+    @include mix.mq(sp) {
+      font-size: 0.775rem;
+    }
+
+  }
+
+}
+
+/*
+ コンタクトフォーム------------------------ */
+ //フォームセクションの指定
+.contact-wrapper {
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+  margin-bottom: 120px;
+  background: var.$color-white;
+
+  //フォームの大枠の指定
+  // .contact-wrapperがあるのでこのclass、htmlごといらないかも
+  .contact-container {
+    width: 100%;
+    max-width: 100vw;
+
+    //フォームとプライバシーポリシーの中枠の指定
+    .contact-inner {
+      width: 100%;
+      max-width: 800px; // 数値は要調整
+      margin: 0 auto; // 中央配置
+
+      // 520px以下の時のfs指定
+      @include mix.mq(sp) {
+        max-width: 320px;
+      }
+
+    } //.contact-inner
+
+  } //.contact-container
+
+  //フォームの中身の指定
+  #form {
+    border-radius: 18px;
+    box-shadow: 0 0 15px -9px rgba(0, 0, 0, 1);
+    padding: 5%;
+    width: 100%;
+    max-width: 100%;
+
+    /* お名前〜問い合わせ内容を各項目ごとに分割 */
+    .contact-form-group {
+      position: relative;
+      text-align: left;
+      padding-top: 20px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.75;
+      letter-spacing: .8px;
+
+      //名前〜お問い合わせ内容
+      .contact-form-title {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        font-weight: 500;
+        margin-bottom: 12px;
+        padding-left: 10px;
+        letter-spacing: .8px;
+        position: relative;
+      }
+
+      .form-text {
+        padding: 18px;
+        color: var.$color-navy;
+      }
+
+      // お問い合わせ内容を入力する枠
+      .form-textarea {
+        display: block;
+        height: 350px;
+        resize: none;
+      }
+
+      // お問い合わせ種別
+      .select-box {
+        width: 200px;
+        height: 40px;
+      }
+
+    } //.contact-form-group
+
+    //.form-area（dl）
+    .form-area {
+
+      // *印の指定
+      .required::before {
+        content: "*";
+        font-size: 20px;
+        color: var.$color-red;
+        margin-right: 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+    } //.form-area
+
+  } //#form
+
+} //.contact-wrapper
+
+/*
+Form Parts
+----------------------------------------*/
+// 各フォーム部品の基本スタイルを上書き
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+  -webkit-appearance: none;
+  appearance: none; // ブラウザ標準スタイルを無効にする
+  width: 100%;
+  background: var.$color-white2;
+  border-radius: 4px;
+  font-family: inherit;
+  line-height: normal;
+
+  // フォーカス時
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(55,149,47,0.7);
+  }
+
+}
+
+// デフォルトの矢印を表示
+select {
+  -moz-appearance: menulist;
+  -webkit-appearance: menulist;
+  appearance: menulist;
+
+  &::-ms-expand {
+    display: block;
+  }
+
+}
+
+// デフォルトのチェックボックス
+input[type="checkbox"] {
+  opacity: 0; // 透明にして見えなくする
+  position: absolute; // 本来の配置から切り離す
+
+  // クリック範囲
+  + span {
+    display: inline-block;
+    position: relative;
+    padding: 0.3em 0.3em 0.3em 2em;
+    line-height: 1;
+    vertical-align: middle;
+    cursor: pointer;
+
+    // チェックボックススタイル
+    &::before {
+      content: "";
+      width: 1.25em;
+      height: 1.25em;
+      border: 1px solid var.$color-gray;
+      background: var.$color-white;
+      position: absolute;
+      top: 0.2em;
+      left: 0;
+      line-height: 1;
+      vertical-align: middle;
+    }
+
+    // チェックボックス未チェック時
+    &::after {
+      content: "";
+      display: none;
+    }
+
+  } //span
+
+  &:focus + span {
+    outline: none;
+    box-shadow: 0 0 5px rgba(55,149,47,0.7);
+  }
+
+  // チェックボックスチェック時
+  &:checked + span::after {
+    display: block;
+    position: absolute;
+    top: 0.2em;
+    left: 0.4em;
+    width: 0.5em;
+    height: 1em;
+    content: "";
+    border-bottom: 3px solid var.$color-green;
+    border-right: 3px solid var.$color-green;
+    transform: rotate(45deg);
+  }
+
+} //input[type="checkbox"]
+
+// 個人情報の取り扱いに同意する
+.privacy-box-check {
+  text-align: center;
+}
+
+// エラーメッセージ
+.errortext {
+  display: block;
+  color: var.$color-red;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-top: 16px;
+
+  // 520px以下の時のfs指定
+  @include mix.mq(sp) {
+    font-size: 0.65rem;
+    margin-top: 8px;
+  }
+}
+
+/*
+ privacy modalセクションの大枠 ------------------------ */
+.ly_inner {
+  width: 100%;
+  max-width: 1080px;
+  padding: 20px 0;
+}
+
+/*
+ 確認・送信・戻るボタンの指定------------------------ */
+.contact-page-btn {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 40px;
+
+  .submit-btn {
+    position: relative;
+    display: block;
+    padding: 1em 2em 1em 1em;
+    width: 175px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var.$color-white;
+    text-align: center;
+    line-height: 1;
+    background: var.$color-blue;
+    text-indent: 0.1em;
+    letter-spacing: 0.1em;
+    border-radius: 50px;
+    border: 1px solid var.$color-blue;
+    box-shadow: 10px 10px 15px -9px rgba(0, 0, 0, 1);
+
+    &:hover {
+      color: var.$color-blue;
+      background: var.$color-white;
+      border: 1px solid var.$color-blue;
+      box-sizing: border-box;
+
+      &::after{
+        right: 1em;
+        border-right: 1px solid var.$color-blue;
+        border-top: 1px solid var.$color-blue;
+      }
+
+    }
+
+  } // .submit-btn
+
+  // 確認・送信ボタンの→
+  .right-arrow {
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 1.5em;
+      margin: auto;
+      display: inline-block;
+      width: 0.5em;
+      height: 0.5em;
+      border-right: 1px solid var.$color-white;
+      border-top: 1px solid var.$color-white;
+      transform: rotate(45deg);
+      transition: right 0.5s;
+    }
+
+  } //.right-arrow
+
+  // makesure.php内、戻るボタンの指定
+  .back-btn {
+
+    margin-top: 24px;
+    background: var.$color-green-blue;
+    border: 1px solid var.$color-green-blue;
+
+    &:hover {
+      color: var.$color-green-blue;
+      background: var.$color-white;
+      border: 1px solid var.$color-green-blue;
+      box-sizing: border-box;
+
+      // hover後の←の色指定
+      &::before{
+        left: 1em;
+        border-right: 1px solid var.$color-green-blue;
+        border-top: 1px solid var.$color-green-blue;
+      }
+
+    }
+
+    // hover前の矢印の指定
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 1.5em;
+      margin: auto;
+      display: inline-block;
+      width: 0.5em;
+      height: 0.5em;
+      border-right: 1px solid var.$color-white;
+      border-top: 1px solid var.$color-white;
+      transform: rotate(-135deg);
+      transition: left 0.5s;
+    }
+
+  } //.back-btn
+
+} //.contact-page-btn

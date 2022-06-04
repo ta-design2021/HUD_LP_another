@@ -1,0 +1,387 @@
+@use '../base/variables' as var;
+@use '../base/mixin' as mix;
+
+/* _header.scss */
+/*
+header
+--------------------------------- */
+#header {
+  width: 100%;
+  height: 100px;
+  background-color: var.$color-navy;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 35;
+  // 下記２つで中央揃え
+  display: flex;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .1);
+
+  //800px以下の時の指定
+  @include mix.mq(sp) {
+    height: 80px;
+  }
+
+
+  .header-inner {
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    //800px以下の時の指定
+    @include mix.mq(sp) {
+      position: relative;
+    }
+
+    .header-nav-menu {
+
+      //800px以下の時のmenuモーダル指定
+      @include mix.mq(sp) {
+        width: 100%;
+        height: 60vh;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var.$color-navy;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 20;
+      }
+
+      #nav {
+
+        ul {
+          display: flex;
+
+          //800px以下の時の縦並び指定
+          @include mix.mq(sp) {
+            display: block;
+            text-align: center;
+          }
+
+          // li
+          .nav-menu-item {
+            margin-left: 20px;
+            margin-right: 20px;
+
+            //800px以下の時のリストの上下間隔調整
+            @include mix.mq(sp) {
+              margin-top: 20px;
+              padding-bottom: 8px;
+              // font-size: 1rem;
+              font-weight: bold;
+              letter-spacing: 0.2rem;
+              border-bottom: 1px solid var.$color-white;
+              position: relative;
+
+              &::after {
+                content: "";
+                width: 8px;
+                height: 8px;
+                border: 0;
+                border-top: solid 2px var.$color-white;
+                border-right: solid 2px var.$color-white;
+                transform: rotate(45deg);
+                position: absolute;
+                top: 32%;
+                right: 24px;
+                transition: right 0.5s;
+              }
+
+              &:hover::after {
+                right: 1em;
+              }
+
+            } //sp版メディアクエリ
+
+            // リストのm-rを0にして揃える
+            &:last-child {
+              margin-right: 0;
+
+              //800px以下の時のm-r指定
+              @include mix.mq(sp) {
+                margin-right: 20px;
+              }
+
+            } // .nav-menu-item(li):last-child
+
+          } //.nav-menu-item(li)
+
+        } //ul
+
+      } // #nav
+
+    } //.header-nav-menu
+
+  } //.header-innner
+
+  // sp版に表示されるハンバーガーメニュー
+  .toggle-menu-btn {
+    display: none; //pc版では非表示
+    position: relative; //toggleとmenu(テキスト)の位置調整のため
+
+    //800px以下の時のtoggle-menu-btn指定
+    @include mix.mq(sp) {
+      display: block; //blockにして表示させる
+      width: 80px;
+      height: 100%;
+
+      // ハンバーガーメニューの線の設定（メニューが閉じている時）
+      > span {
+        position: absolute; //位置調整のため
+        height: 2px;
+        background-color: var.$color-white;
+        border-radius: 4px;
+        transition: all .5s;
+
+        // 1本目の線の長さと位置を設定
+        &:nth-child(1) {
+          width: 40px;
+          top: 25px;
+          left: 20px;
+        }
+
+        // 2本目の線の位置を設定
+        &:nth-child(2) {
+          width: 32px;
+          top: 35px;
+          left: 20px;
+        }
+
+        // 3本目の線の位置を設定
+        &:nth-child(3) {
+          width: 24px;
+          left: 20px;
+          bottom: 33px;
+        }
+
+      } //span
+
+      // MENU(テキスト)
+      .toggle-open {
+        position: absolute;
+        color: var.$color-white;
+        font-size: 0.65rem;
+        left: 20px;
+        bottom: 12px;
+      }
+
+      // CLOSE(テキスト)
+      .toggle-close {
+        opacity: 0;
+        position: absolute;
+        color: var.$color-white;
+        font-size: 0.65rem;
+        left: 20px;
+        bottom: 12px;
+      }
+
+    } //sp版メディアクエリ
+
+  } //.toggle-menu-btn
+
+} //#header
+
+/*
+open --------------------------------- */
+// ハンバーガーメニューメニューが開いている時は、「opacity: 1;」で画面表示する
+.open {
+
+  .toggle-menu-btn {
+
+    //800px以下の時のtoggle-menu-btn指定
+    @include mix.mq(sp) {
+
+      > span {
+
+        //1本目の線を-45度回転
+        &:nth-child(1) {
+          -webkit-transform: translateY(10px) rotate(-45deg);
+          transform: translateY(100px) rotate(-45deg);
+        }
+
+        //2本目の線を非表示
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        //3本目の線を315度回転
+        &:nth-child(3) {
+          width: 35px;
+          -webkit-transform: translateY(-10px) rotate(45deg);
+          transform: translateY(-10px) rotate(45deg);
+        }
+
+      } //span
+
+      .toggle-open {
+        opacity: 0;
+        transition: all .5s;
+      }
+
+      .toggle-close {
+        opacity: 1;
+        transition: all .5s;
+      }
+
+    } //sp版メディアクエリ
+
+  } //.toggle-menu-btn
+
+} //.open(ハンバーガーメニューを押した時の動き)ここまで
+
+
+
+
+
+/*
+nav menu
+--------------------------------- */
+// #nav {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   text-align: center;
+//   width: 100%;
+//   height: 85vh;
+//   color: var.$color-navy;
+//   transition: opacity 0.6s ease, visibility 0.6s ease;
+//   opacity: 0;
+//   visibility: hidden;
+//   background-color: var.$color-navy;
+//   font-size: 0.85rem;
+//   z-index: 20;
+
+//   }
+
+//   .nav-menu {
+//     margin: 100px 0 60px 0;
+//   }
+
+//   .nav-item {
+//     font-size: 1rem;
+//     font-weight: bold;
+//     letter-spacing: 0.2rem;
+//     border-bottom: 1px solid var.$color-white;
+//     position: relative;
+
+//     a {
+//       display: block;
+//       height: 80px;
+//       line-height: 80px;
+//     }
+
+
+
+
+//   } // .nav-item
+
+
+
+// } // #nav
+
+/*
+header-contact-btn ヘッダーのコンタクトボタン--------------------------------- */
+// .header-contact-btn {
+//   font-weight: bold;
+//   width: 240px;
+//   height: 100px;
+//   line-height: 100px;
+//   background-color: var.$color-skyblue;
+//   position: absolute;
+//   top: 0;
+//   right: 100px;
+
+//   .contact-btn {
+//     width: 240px;
+//     height: 100px;
+//     display: flex;
+//     padding-left: 24px;
+//     align-items: center;
+//     font-size: 1.275rem;
+//     letter-spacing: 0.25rem;
+//     color: var.$color-white;
+
+//   } //.contact-btn
+
+//   // 520px以下の時headerのお問い合わせボタンを非表示
+//   @include mix.mq(sp) {
+//     display: none;
+//   }
+
+// } //.header-contact-btn
+
+/*
+toggle-btn ハンバーガーメニューの枠--------------------------------- */
+// .toggle-btn {
+//   display: block;
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   width: 100px;
+//   height: 100px;
+//   background-color: var.$color-navy;
+//   transition: 0.5s;
+//   cursor: pointer;
+//   z-index: 30;
+
+//   // 520px以下の時navメニューボタンの大きさ
+//   @include mix.mq(sp) {
+//     width: 80px;
+//     height: 80px;
+//   }
+
+
+
+// /*
+// open --------------------------------- */
+// // ハンバーガーメニューメニューが開いている時は、「opacity: 1;」で画面表示する
+.open {
+
+  #nav {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .toggle-btn {
+    span {
+
+      background-color: var.$color-white;
+
+      //1本目の線を-45度回転
+      &:nth-child(1) {
+        -webkit-transform: translateY(18px) rotate(-45deg);
+        transform: translateY(18px) rotate(-45deg);
+      }
+
+      //2本目の線を非表示
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      //3本目の線を315度回転
+      &:nth-child(3) {
+        width: 50px;
+        -webkit-transform: translateY(-10px) rotate(45deg);
+        transform: translateY(-10px) rotate(45deg);
+
+        // 520px以下の時のtoggleの×の長さ指定
+        @include mix.mq(sp) {
+          width: 40px;
+        }
+      }
+
+    }
+
+  }
+
+} //.open

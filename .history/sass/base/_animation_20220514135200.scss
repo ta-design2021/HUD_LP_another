@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+/* _animation.scss */
+
+/* TOPページタイトル、SERVICE・CONTACTページセクションリードのアニメーション (画面が表示されたらふわっと動く)*/
+.fadeIn {
+  animation-name: fadeInAnime;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+  opacity: 0;
+}
+
+@keyframes fadeInAnime{
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* セクションリードとサービスグリッドのアニメーション */
+.fadeUp {
+  animation-name: fadeUpAnime;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+  opacity: 0;
+}
+
+@keyframes fadeUpAnime {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* スクロールをしたら出現する要素にはじめに透過0を指定 */
+.fadeUpTrigger, .fadeIn {
+  opacity: 0;
+}

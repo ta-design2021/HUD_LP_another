@@ -1,0 +1,19 @@
+{
+  "editor.fontFamily": "Ricty DiminishedMenlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 16,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.codeActionsOnSave": {
+
+  },
+
+  // 2022.4.23追記
+  "dartsass.targetDirectory": "css/", //どのフォルダに出力するか
+  "dartsass.outputFormat": "both",
+  "dartsass.disableAutoPrefixer": true,
+  "dartsass.debug": true,
+  "dartsass.disableSourceMap": false,
+  "liveServer.settings.port": 5501
+}

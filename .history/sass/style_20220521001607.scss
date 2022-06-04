@@ -1,0 +1,11 @@
+@charset "UTF-8";kokoko
+
+/* style.scss */
+@use 'reset';
+@use 'base/common'; //全ページ共通で使われてるもの
+@use 'base/animation';
+@use 'pages/header';
+@use 'pages/top'; // TOPページ
+@use 'pages/service'; // SERVICEページ
+@use 'pages/contact'; // CONTACTページ
+@use 'pages/footer';

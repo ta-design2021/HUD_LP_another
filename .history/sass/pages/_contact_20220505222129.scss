@@ -1,0 +1,263 @@
+@use '../base/variables' as var;
+/* _contact.scss */
+
+/*-------------------------------------------
+index.php
+-------------------------------------------*/
+.page-lead .thx {
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* 
+ コンタクトフォーム------------------------ */
+ //フォームセクションの指定
+.contact-wrapper {
+  position: relative;
+  margin-bottom: 120px;
+  background: var.$color-white;
+
+  //フォームの大枠の指定
+  .contact-container {
+    width: 1280px;
+    max-width: 1280px; // 数値は要調整
+    margin: 0 auto;
+
+    //フォームとプライバシーポリシーの中枠の指定
+    .contact-inner {
+      max-width: 800px; // 数値は要調整
+      margin: 0 auto; // 中央配置
+    } //.contact-inner
+
+  } //.contact-container
+
+  //フォームの中身の指定
+  #form {
+    border-radius: 18px;
+    box-shadow: 0 0 15px -9px rgba(0, 0, 0, 1);
+    // padding: 0 5% 25px;
+    padding: 5%;
+    width: 100%;  
+    max-width: 100%;
+
+    /* お名前〜問い合わせ内容を各項目ごとに分割 */
+    .contact-form-group {
+      position: relative;
+      text-align: left;
+      padding-top: 20px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.75;
+      letter-spacing: .8px;
+
+      //名前〜お問い合わせ内容
+      .contact-form-title {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        font-weight: 500;
+        // padding-bottom: 12px;
+        margin-bottom: 12px;
+        padding-left: 10px;
+        // line-height: 1.75;
+        letter-spacing: .8px;
+        position: relative;
+      }
+
+      .form-text {
+        padding: 18px;
+        color: var.$color-navy;
+      }
+
+      .form-textarea {
+        display: block;
+        height: 350px;
+        resize: none;
+      }
+
+      // お問い合わせ種別
+      .select-box {
+        width: 200px;
+        height: 40px;
+      }
+
+    } //.contact-form-group
+
+    //.form-area（dl）
+    .form-area {
+
+      // *印の指定
+      .required::before {
+        content: "*";
+        font-size: 20px;
+        color: var.$color-red;
+        margin-right: 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+    } //.form-area
+
+  } //#form
+
+} //.contact-wrapper
+
+/*
+Form Parts
+----------------------------------------*/
+// 各フォーム部品の基本スタイルを上書き
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+  -webkit-appearance: none;
+  appearance: none; // ブラウザ標準スタイルを無効にする
+  width: 100%;
+  background: var.$color-white2;
+  border-radius: 4px;
+  font-family: inherit;
+  line-height: normal;
+
+  // フォーカス時
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(55,149,47,0.7);
+  }
+
+}
+
+// デフォルトの矢印を表示
+select {
+  -moz-appearance: menulist;
+  -webkit-appearance: menulist;
+  appearance: menulist;
+
+  &::-ms-expand {
+    display: block;
+  }
+
+}
+
+// デフォルトのチェックボックス
+input[type="checkbox"] {
+  opacity: 0; // 透明にして見えなくする
+  position: absolute; // 本来の配置から切り離す
+
+  // クリック範囲
+  + span {
+    display: inline-block;
+    position: relative;
+    padding: 0.3em 0.3em 0.3em 2em;
+    line-height: 1;
+    vertical-align: middle;
+    cursor: pointer;
+
+    // チェックボックススタイル
+    &::before {
+      content: "";
+      width: 1.25em;
+      height: 1.25em;
+      border: 1px solid var.$color-gray;
+      background: var.$color-white;
+      position: absolute;
+      top: 0.2em;
+      left: 0;
+      line-height: 1;
+      vertical-align: middle;
+    }
+
+    // チェックボックス未チェック時
+    &::after {
+      content: "";
+      display: none;
+    }
+
+  } //span
+
+  &:focus + span {
+    outline: none;
+    box-shadow: 0 0 5px rgba(55,149,47,0.7);
+  }
+
+  // チェックボックスチェック時
+  &:checked + span::after {
+    display: block;
+    position: absolute;
+    top: 0.2em;
+    left: 0.4em;
+    width: 0.5em;
+    height: 1em;
+    content: "";
+    border-bottom: 3px solid #37952F;
+    border-right: 3px solid #37952F;
+    transform: rotate(45deg);
+  }
+  
+} //input[type="checkbox"]
+
+// 個人情報の取り扱いに同意する
+.privacy-box-check {
+  text-align: center;
+}
+
+// エラーメッセージ
+.errortext {
+  display: block;
+  color: var.$color-red;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-top: 16px;
+  // align-items: center;
+}
+
+/* 
+ privacy modalセクションの大枠 ------------------------ */
+.ly_inner {
+  width: 100%;
+  max-width: 1080px;
+  padding: 20px 0;
+}
+
+/* 
+ 確認・送信・戻るボタン------------------------ */
+.makesurebox, .send-btn {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 40px;
+}
+
+.submit-btn {
+  position: relative;
+  display: block;
+  padding: 1em 2em 1em 1em;
+  width: 175px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var.$color-white;
+  text-align: center;
+  line-height: 1;
+  background: var.$color-blue;
+  text-indent: 0.1em;
+  letter-spacing: 0.1em;
+  border-radius: 50px;
+  border: 1px solid var.$color-blue;
+  box-shadow: 10px 10px 15px -9px rgba(0, 0, 0, 1);
+
+  &:hover {
+    color: var.$color-blue;
+    background: var.$color-white;
+    border: 1px solid var.$color-blue;
+    box-sizing: border-box;
+  }
+
+}
+
+.back-btn:hover {
+  color: var.$color-green-blue;
+  background: $color-white;
+  border: 1px solid $color-green-blue;
+  box-sizing: border-box;
+}

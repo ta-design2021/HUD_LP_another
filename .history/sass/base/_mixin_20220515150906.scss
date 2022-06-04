@@ -1,0 +1,15 @@
+// メディアクエリ
+$breakpoint: (
+  //  520px以下
+  sp: 'screen and (max-width: 520px)',
+  //  960px以下
+  tab: 'screen and (max-width: 960px)',
+  //  1025px以上
+  pc: 'screen and (min-width: 1025px)'
+);
+
+@mixin mq($bp) {
+  @media #{map-get($breakpoint, $bp)} {
+  @content;
+  }
+}

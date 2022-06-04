@@ -1,0 +1,542 @@
+@charset "UTF-8";
+
+@use '../base/variables' as var;
+@use '../base/mixin' as mix;
+/* _main.scss */
+/*
+mv セクション
+--------------------------------- */
+#mv {
+  width: 100%;
+  max-width: 100vw;
+  height: 90vh;
+  text-align: left;
+
+  // tab,spサイズ時の#mvの高さ指定
+  // @include mix.mq(tab) {
+  //   height: 60vh;
+  //   margin-bottom: 160px;
+  // }
+
+  // 520px以下の時#mvの高さ指定
+  @include mix.mq(sp) {
+    height: 65vh;
+  }
+
+  .hero-img {
+    height: 100%;
+    // 960px以下の時PCサイズのimgを非表示
+    @include mix.mq(tab) {
+      display: none;
+    }
+
+  }
+
+  //サイトタイトル全体
+  .mv-txt {
+    position: absolute;
+    top: 60%;
+    left: 0;
+
+    // 960px以下の時のmv-txtの位置を指定
+    @include mix.mq(tab) {
+      // top: 46%;
+      bottom: 0;
+    }
+
+    .site-title {
+      font-size: 2.65rem;
+      line-height: 1.5;
+      font-weight: bold;
+      color: var.$color-white;
+
+      // 520px以下の時のsite-titleのfsを指定
+      @include mix.mq(sp) {
+        font-size: 1.45rem;
+      }
+
+      &:nth-child(2) {
+        margin-top: 24px;
+        margin-bottom: 24px;
+      }
+
+      span {
+        background: linear-gradient(to right,#0428a1,#5578B4,#46AAB5);
+        background: -moz-linear-gradient(to right,#0428a1,#5578B4,#46AAB5);
+        background: -webkit-linear-gradient(to right,#0428a1,#5578B4,#46AAB5);
+        padding: 8px 24px;
+      }
+
+    } //.site-title
+
+  } //.mv-txt
+
+  // PCサイズ時のSP版mv画像の指定
+  .sp-tab-hero-img {
+    display: none;
+    height: 100%;
+
+    // 960px以下の時のmv画像の高さ指定
+    @include mix.mq(tab) {
+      display: block;
+    }
+
+    // 520px以下の時のmv画像の高さ指定
+    @include mix.mq(sp) {
+      display: block;
+    }
+
+  }
+
+} //#mv
+
+/*
+ point セクション--------------------------------- */
+#point {
+  width: 100%;
+  max-width: 100vw;
+  display: block;
+  margin-bottom: 120px;
+  padding: 5rem calc((100vw / 12) * 1);
+  position: relative;
+
+  // 520px以下の時の上線の指定
+  @include mix.mq(sp) {
+    padding-top: 60px;
+  }
+
+  //5つ」の強調
+  .big-txt {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var.$color-skyblue;
+
+    // 520px以下の時の「5つ」のfs指定
+    @include mix.mq(sp) {
+      font-size: 1.5rem;
+    }
+
+  }
+
+} //#point
+
+/* ポイントのコンテンツ大枠 */
+.point-container {
+  width: 100%;
+  //　要調整or統一できるかも
+  // margin-top: 8rem;
+
+  //ポイントの各アイテムごとの枠
+  .point-item {
+    position: relative;
+    margin-bottom: 4rem;
+
+    //中身
+    &-inner {
+      padding: 6rem;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px -9px rgba(0, 0, 0, 0.5);
+      background: var.$color-white; //この指定がないと背景透過しちゃう
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: reverse;
+      flex-direction: row-reverse;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+
+      // 520px以下の時コンテンツ要素を縦並び指定
+      @include mix.mq(sp) {
+        padding: 2.5rem;
+        flex-direction: column;
+      }
+
+    } //point-item-inner
+
+    &-img {
+      display: -webkit-box;
+      display: flex;
+      width: 30%;
+      -webkit-box-align: center;
+      align-items: center;
+
+      // 520px以下の時アイソメトリックの横幅指定
+      @include mix.mq(sp) {
+        width: 100%;
+      }
+
+    }
+
+    &-txt {
+      width: 55%;
+      text-align: justify;
+      padding-right: 2rem;
+
+      // 520px以下の時コンテンツテキストの横幅指定
+      @include mix.mq(sp) {
+        width: 100%;
+        text-align: justify;
+        padding: 25px 0 0 0;
+      }
+
+    }
+
+    /* point01~05 */
+    .point-catch {
+      margin-bottom: 1rem;
+
+      // 520px以下の時コンテンツテキストの横幅指定
+      @include mix.mq(sp) {
+        margin-bottom: 0;
+      }
+
+      // アンダーラインとPOINT
+      .point-catch-point {
+        font-size: 1.5rem;
+        font-weight: bold;
+        border-bottom: 2px solid var.$color-navy;
+        padding-bottom: 0.3em;
+        margin-right: 0.3em;
+        position: relative;
+        bottom: 0.8rem;
+        letter-spacing: 0.03em;
+        line-height: 1;
+      }
+
+      // 01~05のnumber
+      .point-catch-num {
+        font-size: 3.5rem;
+        font-weight: bold;
+        line-height: 1;
+      }
+
+    } // .point-catch
+
+    // タイトル（Planning~Maintenance）
+    .point-name {
+      display: inline-block;
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    // タイトルの日本語（企画〜メンテナンス）
+    .point-name-ja {
+      margin-bottom: 30px;
+      font-size: 0.75rem;
+    }
+
+    // ポイント説明文
+    .point-detail {
+      font-size: 1.275rem;
+    }
+
+    // グラデーション背景の指定
+    &::after {
+      position: absolute;
+      content: '';
+      display: block;
+      width: calc(( 100vw / 12 ) * 5.2);
+      height: calc( ( 100vw / 12 ) * 2.5);
+      background: linear-gradient(to right,#0428a1,#5578B4,#46AAB5);
+      background: -moz-linear-gradient(to right,#0428a1,#5578B4,#46AAB5);
+      background: -webkit-linear-gradient(to right,#0428a1,#5578B4,#46AAB5);
+      z-index: -2;
+      transform: translateY(5%);
+    }
+
+    // 左側の指定
+    &:nth-of-type(odd)::after {
+      position: absolute;
+      top: -4.9rem;
+      left: calc( (100vw / 12) * -1);
+      border-radius: 0 15px 15px 0;
+    }
+
+    // 右側の指定
+    &:nth-of-type(even)::after {
+      position: absolute;
+      top: calc( ( 100vw / 12) * -1);
+      right: calc( (100vw / 12) * -1);
+      border-radius: 15px 0 0 15px;
+    }
+
+  } //point-item
+
+}  //#point-container
+
+/*
+SERVICEセクション --------------------------------- */
+#service {
+  width: 100%;
+  max-width: 100vw;
+  padding: 5rem calc((100vw / 12) * 1);
+  background: var.$color-blue;
+  height: auto;
+  position: relative;
+
+  // グリッド
+  .service-grid-container {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+    .service-item {
+      position: relative;
+
+      img {
+        display: block;
+        width: 100%;
+        transition: .3s;
+      }
+
+      .txt-wrap {
+        opacity: 0;
+        transition: .3s;
+        position: absolute;
+        left: 0;
+        top:0;
+        width: 100%;
+        height: 100%;
+        color: var.$color-white;
+
+        .txt-box {
+          position: relative;
+          width: 100%;
+          height: 100%;
+
+          > p {
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+          }
+
+        }
+
+      } //.txt-wrap
+
+      &:hover{
+
+        .img-wrap {
+
+          img {
+            filter: brightness(60%);
+          }
+
+          .txt-wrap {
+            opacity: 1;
+          }
+
+        }
+
+      }
+
+    } // .service-item
+
+
+    // テキストボックス
+    .service-grid-txt-box {
+      position: absolute;
+      width: 320px;
+      height: 80px;
+      font-size: 0.85rem;
+      background-color: var.$color-white;
+      box-shadow: -10px 10px 15px -9px rgba(0, 0, 0, 1);
+      opacity: .8;
+      bottom: -20px;
+      right: -18px;
+
+      // ボックスの右欠け
+      &::after {
+        position: absolute;
+        content: '';
+        right: 0;
+        bottom: 0;
+        border-width: 15px;
+        border-style: solid;
+        border-color: rgba(255, 255, 255, 0) var.$color-blue var.$color-blue rgba(255, 255, 255, 0);
+        z-index: -1;
+      }
+
+    } // .service-grid-txt-box
+
+    // テキストの指定
+    .service-grid-txt {
+      color: var.$color-blue;
+      font-weight: bold;
+      line-height: 80px; //ボックスの高さと合わせてサイズ指定し、中央配置
+      text-align: center;
+    }
+
+    // 右欠け部分の丸と矢印
+    .service-circle-arrow {
+
+      //矢印
+      .service-arrow {
+        position: absolute;
+        display: inline-block;
+        margin-left: 10px;
+        width: 32px;
+        height: 10px;
+        border-bottom: 2px solid var.$color-blue;
+        border-right: 2px solid var.$color-blue;
+        transform: skew(45deg);
+        bottom: 12%;
+        right: 15px;
+      }
+
+      // 丸
+      .service-circle {
+        display: inline-block;
+        position: absolute;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: #46aab5;
+        bottom: 0;
+        right: 0;
+      }
+
+    }
+
+  } //.service-grid-container
+
+} // #service
+
+/*
+ FLOW セクション--------------------------------- */
+#flow {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  height: auto;
+  padding: 16rem calc((100vw / 12) * 1);
+
+  // flowの大枠
+  .flowbar {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2% 4%;
+    border-radius: 18px;
+    box-shadow: 0px 0px 15px -9px rgba(0, 0, 0, 1);
+
+    // 各flowコンテンツの枠
+    .flowbarwrap {
+      display: flex;
+      position: relative;
+      margin: 2em 0;
+      align-items: center;
+      justify-content: space-evenly;
+
+      // 左側のテキスト
+      .flow-left {
+        width: 65%;
+
+        .flowtitle {
+          display: inline-flex;
+          align-items: center;
+
+          .flowcircle {
+            display: inline-block;
+            content: "";
+            width: 5em;
+            height: 5em;
+            border-radius: 50%;
+            background-color: var.$color-blue;
+            color: var.$color-white;
+            text-align: center;
+
+            // 01~02のナンバー
+            span {
+              display: inline-block;
+              line-height: 1;
+              font-size: 1.9rem;
+              letter-spacing: normal;
+              font-weight: bold;
+              position: relative;
+              top: 0.9em;
+            }
+
+          } // .flowcircle
+
+          .title {
+            margin: 0.5em;
+            font-weight: bold;
+            font-size: 1.8rem;
+          }
+
+        } // .flowtitle
+
+        .flowtxt {
+          padding-left: 6em;
+        }
+
+      } // .flow-left
+
+      // 右側のイラストの指定
+      .flow-right {
+        width: 20%;
+
+        .flowimg {
+
+          img {
+          min-width: 160px;
+          height: auto;
+          }
+
+        }
+
+      } // .flow-right
+
+      // 2,4番目を右にずらす
+      &:nth-of-type(even) {
+        justify-content: flex-end;
+      }
+
+    } // .flowbarwrap
+
+    // 棒線デザインの指定
+    .flowline {
+      width: 1px;
+      height: 110px;
+      background-color: var.$color-navy;
+      position: absolute;
+      top: 9.5em;
+      left: 9em;
+      transform: translateY(15px) rotate(-25deg);
+    }
+
+    // 2,4番目の線の角度をかえる
+    .flowline-even {
+      transform: translateY(15px) rotate(25deg);
+      left: 9.5em;
+    }
+
+  } //.flowbar
+
+} // #flow
+
+/*
+ CONTACT セクション--------------------------------- */
+#contact {
+  width: 100%;
+  max-width: 100vw;
+  height: auto;
+  padding: 13rem calc((100vw / 12) * 1) 5rem;
+  text-align: center;
+  color: var.$color-white;
+  background-color: var.$color-skyblue;
+  position: relative;
+
+  .contact-container p:nth-of-type(even) {
+    margin-bottom: 25px;
+  }
+
+  // navのボタンと共通指定のためhover時のフォントカラーを変更
+  .nav-btn:hover {
+    color: var.$color-skyblue;
+  }
+
+} // #contact
